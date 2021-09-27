@@ -15,7 +15,7 @@ export default class Deck {
     return Math.floor(Math.random() * (this.cards.length));
   }
   draw() {
-    return this.cards[this.randomCardIdx()];
+    return this.cards.splice(this.randomCardIdx(), 1);
   }
 }
 

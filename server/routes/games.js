@@ -1,5 +1,6 @@
 import Deck from '../models/deck'
 import express from 'express';
+import WarGame from '../models/wargame';
 let router = express.Router();
 
 
@@ -9,6 +10,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  res.send(new Deck().draw())
+  const wargame = new WarGame()
+  res.json({
+    wargame
+  })
 })
 export default router;
