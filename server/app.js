@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
+import gamesRouter from './routes/games'
 var app = express();
 app.use(logger('dev'));
 app.use(express.json());
