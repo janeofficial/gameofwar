@@ -1,3 +1,4 @@
+import Card from "./card";
 export default class Deck {
   constructor () {
     this.cards = this.generate();

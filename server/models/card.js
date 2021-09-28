@@ -5,6 +5,9 @@ export default class Card {
   }
 
   compare (card) {
-
+    if (this.number > card.number) return "higher"
+    if (this.number < card.number) return "lower"
+    if (this.number === card.number) return "equal"
   }
-}
+  }
+

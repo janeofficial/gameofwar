@@ -2,7 +2,10 @@ import Deck from "./deck";
 import Player from './player'
 export default class WarGame {
   constructor (player1 = new Player(), player2 = new Player()) {
-    this.stack = [];
+    this.stack = {
+      0: [],
+      1: []
+    };
     this.players = [player1, player2]
     this.deal(new Deck());
   }
@@ -19,8 +22,10 @@ export default class WarGame {
 
   startGame() { // starts the game loop
     while(!this.gameOver()) {
-      // once players have cards in their playstack, examine the card value [10Heart]
-      // if first part of the card value is ace || 2, we can assume its the smaller card
+      this.players.forEach((player, index)=> {
+        const card = player.play()
+        this.stack[index].push(card)
+      })
     }
   }
 
@@ -29,10 +34,6 @@ export default class WarGame {
       return player.lost()
     })
     return losingPlayer;
-  }
-
-  compare() { // P1 playstack points vs. P2 points
-
   }
 
 }

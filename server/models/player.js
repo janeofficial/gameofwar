@@ -1,7 +1,6 @@
 export default class Player {
   constructor () {
     this.deck = [];
-
   }
   addCards(cardsArray) {
     this.deck = cardsArray.concat(this.deck)
@@ -13,6 +12,6 @@ export default class Player {
 
   play() {
   // pulling top card off the deck and returning it in an array
-    return this.deck.splice(this.deck.length - 1, 1)
+    return this.deck.splice(this.deck.length - 1, 1)[0];
   }
 }
