@@ -5,6 +5,8 @@ export default class Player {
   addCards(cardsArray) {
     this.deck = cardsArray.concat(this.deck)
   }
+  playstack() {
 
+  }
 
 }

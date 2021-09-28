@@ -8,6 +8,7 @@ export default class WarGame {
 
     this.deck = new Deck();
     for(let i = 0; i < 27; i++) {
+      // for player one, draw one card, and add to the bottom of the players deck
       const card1 = this.deck.draw()
       this.player1.addCards(card1)
 
