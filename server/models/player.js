@@ -1,17 +1,20 @@
+import Deck from './deck'
 export default class Player {
   constructor () {
-    this.deck = [];
+    this.deck = new Deck();
   }
+
   addCards(cardsArray) {
-    this.deck = cardsArray.concat(this.deck)
+    this.deck.addBottom(cardsArray)
   }
+
   lost() {
     // player has no cards left - loser
-    return this.deck.length === 0
+    return this.deck.empty()
   }
 
   play() {
   // pulling top card off the deck and returning it in an array
-    return this.deck.splice(this.deck.length - 1, 1)[0];
+    return this.deck.drawTop()
   }
 }
