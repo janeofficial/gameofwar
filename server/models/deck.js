@@ -8,7 +8,9 @@ export default class Deck {
    let suitArr = ["Heart", "Club", "Spade", "Diamond"];
    let cardArr = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"];
 
-   return suitArr.flatMap(d => cardArr.map(v => d + v));
+   return suitArr.flatMap(suit => cardArr.map(number => {
+     return new Card(suit, number)
+   }));
   }
 
   randomCardIdx() {
