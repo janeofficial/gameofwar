@@ -6,7 +6,7 @@ export default class Deck {
   generate() {
    // Generates a deck of Cards - deck has 4 suits, each suit has 13 cards
    let suitArr = ["Heart", "Club", "Spade", "Diamond"];
-   let cardArr = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"];
+   let cardArr = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
    return suitArr.flatMap(suit => cardArr.map(number => {
      return new Card(suit, number)
