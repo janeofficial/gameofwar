@@ -45,5 +45,13 @@ export default class Deck {
   empty() {
     return this.cards.length === 0
   }
+
+  getAllCards() {
+    const cards = this.cards
+    // this deletes cards from the deck
+    this.cards = [];
+    // but we're able to return the cards array bc we made the copy above
+    return cards
+  }
 }
 

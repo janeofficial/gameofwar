@@ -2,17 +2,10 @@ import Deck from "./deck";
 import Player from './player'
 export default class WarGame {
   constructor (player1 = new Player(), player2 = new Player()) {
-    this.deck = new Deck();
-    this.stacks = {
-      0: new Deck(),
-      1: new Deck()
-    };
 
+    this.pile = new Deck();
+    this.playCount = 0;
 
-    this.burns = {
-      0: new Deck(),
-      1: new Deck()
-    }
     this.players = [player1, player2]
     this.deal(new Deck(true))
   }
@@ -29,42 +22,52 @@ export default class WarGame {
 
   startGame() { // starts the game loop
     while(!this.gameOver()) {
-      this.normalPlay()
+      // array, first player's card at 0, second players card at 1
+      const cardsToCompare = this.getPlayerCards()
+      const card1 = cardsToCompare[0]
+      const card2 = cardsToCompare[1]
 
-      // const stack1 = this.stacks(0)
-      // const stack2 = this.stack(1)
-      // const card1 = stack1[stack1.length - 1]
-      // const card2 = stack2[stack2.length - 1]
+      const player1 = this.players[0]
+      const player2 = this.players[1]
+
       const result = card1.compare(card2)
       switch(result) {
         case 'higher':
-          this.players[0].addBottom([card1, card2])
+          player1.addCards(cardsToCompare)
+          player1.addCards(this.pile.getAllCards())
           break
         case 'lower':
-          this.players[1].addBottom([card1, card2])
+          player2.addCards(cardsToCompare)
+          player2.addCards(this.pile.getAllCards())
           break
         case 'equal':
           this.burnCards()
+          // adding cards we compared to the pile
+          this.pile.addTop(cardsToCompare)
           break
       }
     }
   }
 
   burnCards() {
+    // adding two cards to the pile w/o comparison
     this.players.forEach((player, index)=> {
       const card = player.play()
-      this.burns[index].addTop(card)
+      this.pile.addTop(card)
     })
   }
 
-  normalPlay() {
-    this.players.forEach((player, index)=> {
-      const card = player.play()
-      this.stacks[index].addTop(card)
+  getPlayerCards() {
+    // return an array of cards
+    return this.players.map((player)=> {
+      // returns the card
+      return player.play()[0]
     })
   }
 
   gameOver() {
+    if (this.playCount > 5000) return true
+    this.playCount++
     const losingPlayer = this.players.find((player) => {
       return player.lost()
     })

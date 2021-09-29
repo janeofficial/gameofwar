@@ -1,6 +1,8 @@
 import Deck from './deck'
 export default class Player {
   constructor () {
+    // player1, player2
+
     this.deck = new Deck();
   }
 
