@@ -1,7 +1,7 @@
 import Card from "./card";
 export default class Deck {
-  constructor ({ fullDeck }) {
-    if (fullDeck) {
+  constructor (withFullDeck) {
+    if (withFullDeck) {
       this.cards = this.generateFullDeck();
     } else {
       this.cards = []
@@ -23,11 +23,11 @@ export default class Deck {
   }
 
   shuffleDraw() {
-    this.draw(this.randomCardIdx())
+    return this.draw(this.randomCardIdx())
   }
 
   drawTop() {
-    this.draw(this.cards.length - 1)
+    return this.draw(this.cards.length - 1)
   }
 
   addTop(cards) {
