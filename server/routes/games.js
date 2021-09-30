@@ -4,12 +4,6 @@ import WarGame from '../models/wargame';
 import client from '../database'
 let router = express.Router();
 
-
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
 router.post('/', async function(req, res, next) {
   const wargame = new WarGame()
   wargame.startGame()
