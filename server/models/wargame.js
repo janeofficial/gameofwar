@@ -1,7 +1,7 @@
 import Deck from "./deck";
 import Player from './player'
 export default class WarGame {
-  constructor (player1 = new Player(), player2 = new Player()) {
+  constructor (player1 = new Player("player1"), player2 = new Player("player2")) {
 
     this.pile = new Deck();
     this.playCount = 0;
@@ -46,7 +46,8 @@ export default class WarGame {
           this.pile.addTop(cardsToCompare)
           break
       }
-    }
+    } // calling methods in a class definition requires the this keyword!!!
+    this.handleWin()
   }
 
   burnCards() {
@@ -66,12 +67,22 @@ export default class WarGame {
   }
 
   gameOver() {
-    if (this.playCount > 5000) return true
+    if (this.playCount > 100000) return 'draw'
     this.playCount++
     const losingPlayer = this.players.find((player) => {
       return player.lost()
     })
     return losingPlayer;
+  }
+
+  handleWin() {
+    if (this.gameOver() === 'draw') return 'The players got tired of playing'
+    const [player1, player2] = this.players
+    if (player1.lost()) {
+      return `${player2.name} has won the game!`
+    } if (player2.lost()) {
+      return `${player1.name} has won the game!`
+    }
   }
 
 }

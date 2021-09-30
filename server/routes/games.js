@@ -13,7 +13,8 @@ router.post('/', function(req, res, next) {
   const wargame = new WarGame()
   wargame.startGame()
   res.json({
-    wargame
+    wargame,
+    message: wargame.handleWin()
   })
 })
 export default router;
