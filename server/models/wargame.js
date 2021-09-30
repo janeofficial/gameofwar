@@ -1,8 +1,8 @@
 import Deck from "./deck";
 import Player from './player'
 export default class WarGame {
-  constructor (player1 = new Player("player1"), player2 = new Player("player2")) {
-
+  constructor (player1 = new Player("Player 1", 1), player2 = new Player("Player 2", 2)) {
+    this.winner = null;
     this.pile = new Deck();
     this.playCount = 0;
 
@@ -79,8 +79,10 @@ export default class WarGame {
     if (this.gameOver() === 'draw') return 'The players got tired of playing'
     const [player1, player2] = this.players
     if (player1.lost()) {
+      this.winner = player2
       return `${player2.name} has won the game!`
     } if (player2.lost()) {
+      this.winner = player1
       return `${player1.name} has won the game!`
     }
   }
