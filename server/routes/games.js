@@ -1,6 +1,7 @@
 import Deck from '../models/deck'
 import express from 'express';
 import WarGame from '../models/wargame';
+import { getWins } from '../database'
 let router = express.Router();
 
 
@@ -16,5 +17,10 @@ router.post('/', function(req, res, next) {
     wargame,
     message: wargame.handleWin()
   })
+})
+
+router.get('/wins', function(req, res, next) {
+  const wins = getWins()
+  res.send(wins)
 })
 export default router;
