@@ -22,7 +22,8 @@
     "build": "npm-run-all clean transpile",
     "prod": "NODE_ENV=production npm-run-all build server",
     "dev": "NODE_ENV=development npm-run-all build server",
-    "watch:dev": "nodemon"
+    "watch:dev": "nodemon",
+    "test": "mocha server/tests/."
   },
   "babel": {
     "presets": [
@@ -45,7 +46,11 @@
     "rimraf": "^3.0.2"
   },
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/register": "^7.15.3",
+    "chai": "^4.3.4",
+    "mocha": "^9.1.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/janeofficial/gameofwar.git"
