@@ -7,4 +7,7 @@ const client = new Client({
   database: "gameofwar"
 })
 
+client.connect()
+
 export default client
+
