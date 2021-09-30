@@ -7,18 +7,4 @@ const client = new Client({
   database: "gameofwar"
 })
 
-client.connect()
-
-export const getWins = async () => {
-  const result = await client.query(`select * from wins`, (err, res) => {
-    if(!err) {
-      console.log(res.rows);
-    } else {
-      console.log(err.message)
-    }
-    client.end;
-  })
-
-  return result
-}
-
+export default client

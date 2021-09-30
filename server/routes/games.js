@@ -1,7 +1,7 @@
 import Deck from '../models/deck'
 import express from 'express';
 import WarGame from '../models/wargame';
-import { getWins } from '../database'
+import client from '../database'
 let router = express.Router();
 
 
@@ -19,8 +19,10 @@ router.post('/', function(req, res, next) {
   })
 })
 
-router.get('/wins', function(req, res, next) {
-  const wins = getWins()
-  res.send(wins)
+router.get('/wins', async function(req, res, next) {
+  await client.connect()
+  const { rows } = await client.query(`SELECT count(*), player_id from wins GROUP BY player_id;`)
+  res.json(rows)
 })
+
 export default router;
