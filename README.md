@@ -8,7 +8,7 @@ The second endpoint retrieves wins for each player stored in a database
 The application currently connects to local postgres at port  `5432` statically via `database.js`.
 #### Install Postgres and Create Tables
 - [Install postgres](https://www.postgresql.org/download/)
-- Using your favorite tools create a database called `gameofwar` (or update the static value in `database.js`) and a table in that database called `wins` with a primary key column and a `player_id` column
+- Using your favorite tools create a database called `gameofwar` (or update the static value in `database.js`) and a table in that database called `wins` with a `primary key` column and a `player_id` column
 
 ### Steps to Run the Application
 - Run `npm i`
